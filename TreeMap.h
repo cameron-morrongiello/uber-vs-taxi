@@ -87,6 +87,7 @@ void TreeMap<K, D>::balanceRB(Node *_input) {
         } else { // Uncle is Red
             uncle->isBlack = true;
             parent->isBlack = true;
+            grandParent->isBlack = false;
             _input = grandParent;
         }
     }
@@ -111,6 +112,8 @@ void TreeMap<K, D>::leftRotation(TreeMap::Node *_node) {
     Node *child = _node->right;
     if (_node == root) {
         root = child;
+    } else{
+        _node->parent->left ==_node ? _node->parent->left = child : _node->parent->right = child;
     }
     _node->right = child->left;
     if (_node->right) {
@@ -126,6 +129,8 @@ void TreeMap<K, D>::rightRotation(TreeMap::Node *_node) {
     Node *child = _node->left;
     if (_node == root) {
         root = child;
+    } else{
+        _node->parent->left ==_node ? _node->parent->left = child : _node->parent->right = child;
     }
     _node->left = child->right;
     if (_node->left) {
