@@ -39,7 +39,9 @@ private:
 public:
 
     TreeMap();
+    D& operator[](K Key);
     void insert(K key, D data);
+    void insert(K key, D data, Node* &_node);
     D find(K key);
 
     void print();
@@ -51,6 +53,21 @@ TreeMap<K, D>::Node::Node(K _key, D _data)
 
 template<typename K, typename D>
 TreeMap<K, D>::TreeMap() : root(nullptr) {}
+
+template<typename K, typename D>
+D &TreeMap<K, D>::operator[](K Key) {
+    Node* node = findNode(Key, root);
+    if(!node)
+        insert(Key,D(), node);
+    return node->data;
+}
+
+template<typename K, typename D>
+void TreeMap<K, D>::insert(K _key, D _data, Node* &input) {
+    input = new Node(_key, _data);
+    root = treeInsert(root, input);
+    balanceRB(input);
+}
 
 template<typename K, typename D>
 void TreeMap<K, D>::insert(K _key, D _data) {
@@ -162,7 +179,7 @@ D TreeMap<K, D>::find(K key) {
     Node* node = findNode(key,root);
     if (node)
         return node->data;
-    return D();
+    return D(); // Returns default value if cannot find
 }
 
 template<typename K, typename D>
