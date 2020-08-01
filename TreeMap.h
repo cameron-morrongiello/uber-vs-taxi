@@ -71,8 +71,8 @@ template<typename K, typename D>
 void TreeMap<K, D>::postOrder(TreeMap::Node *&_root) {
     if (!_root)
         return;
-    printTree(_root->left);
-    printTree(_root->right);
+    postOrder(_root->left);
+    postOrder(_root->right);
     delete _root;
 }
 
