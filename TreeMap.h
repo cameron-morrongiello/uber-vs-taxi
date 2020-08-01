@@ -34,14 +34,22 @@ private:
 
     void printTree(Node *_root);
 
-    Node* findNode(K key, Node* _root);
+    Node *findNode(K key, Node *_root);
+
+    void insert(K key, D data, Node *&input);
+
+    void postOrder(Node *&_root);
+
 
 public:
-
     TreeMap();
-    D& operator[](K Key);
+
+    ~TreeMap();
+
+    D &operator[](K Key);
+
     void insert(K key, D data);
-    void insert(K key, D data, Node* &_node);
+
     D find(K key);
 
     void print();
@@ -55,15 +63,29 @@ template<typename K, typename D>
 TreeMap<K, D>::TreeMap() : root(nullptr) {}
 
 template<typename K, typename D>
+TreeMap<K, D>::~TreeMap() {
+    postOrder(root);
+}
+
+template<typename K, typename D>
+void TreeMap<K, D>::postOrder(TreeMap::Node *&_root) {
+    if (!_root)
+        return;
+    printTree(_root->left);
+    printTree(_root->right);
+    delete _root;
+}
+
+template<typename K, typename D>
 D &TreeMap<K, D>::operator[](K Key) {
-    Node* node = findNode(Key, root);
-    if(!node)
-        insert(Key,D(), node);
+    Node *node = findNode(Key, root);
+    if (!node)
+        insert(Key, D(), node);
     return node->data;
 }
 
 template<typename K, typename D>
-void TreeMap<K, D>::insert(K _key, D _data, Node* &input) {
+void TreeMap<K, D>::insert(K _key, D _data, Node *&input) {
     input = new Node(_key, _data);
     root = treeInsert(root, input);
     balanceRB(input);
@@ -131,8 +153,8 @@ void TreeMap<K, D>::leftRotation(TreeMap::Node *_node) {
     Node *child = _node->right;
     if (_node == root) {
         root = child;
-    } else{
-        _node->parent->left ==_node ? _node->parent->left = child : _node->parent->right = child;
+    } else {
+        _node->parent->left == _node ? _node->parent->left = child : _node->parent->right = child;
     }
     _node->right = child->left;
     if (_node->right) {
@@ -148,8 +170,8 @@ void TreeMap<K, D>::rightRotation(TreeMap::Node *_node) {
     Node *child = _node->left;
     if (_node == root) {
         root = child;
-    } else{
-        _node->parent->left ==_node ? _node->parent->left = child : _node->parent->right = child;
+    } else {
+        _node->parent->left == _node ? _node->parent->left = child : _node->parent->right = child;
     }
     _node->left = child->right;
     if (_node->left) {
@@ -176,15 +198,15 @@ void TreeMap<K, D>::printTree(TreeMap::Node *_root) {
 
 template<typename K, typename D>
 D TreeMap<K, D>::find(K key) {
-    Node* node = findNode(key,root);
+    Node *node = findNode(key, root);
     if (node)
         return node->data;
     return D(); // Returns default value if cannot find
 }
 
 template<typename K, typename D>
-typename TreeMap<K,D>::Node* TreeMap<K, D>::findNode(K key, TreeMap::Node *_root) {
-    if(!_root)
+typename TreeMap<K, D>::Node *TreeMap<K, D>::findNode(K key, TreeMap::Node *_root) {
+    if (!_root)
         return nullptr;
     if (key == _root->key)
         return _root;
