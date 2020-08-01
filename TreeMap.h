@@ -34,11 +34,13 @@ private:
 
     void printTree(Node *_root);
 
+    Node* findNode(K key, Node* _root);
+
 public:
 
     TreeMap();
-
     void insert(K key, D data);
+    D find(K key);
 
     void print();
 };
@@ -153,6 +155,26 @@ void TreeMap<K, D>::printTree(TreeMap::Node *_root) {
     std::cout << _root->key << " " << _root->isBlack << std::endl;
     printTree(_root->left);
     printTree(_root->right);
+}
+
+template<typename K, typename D>
+D TreeMap<K, D>::find(K key) {
+    Node* node = findNode(key,root);
+    if (node)
+        return node->data;
+    return D();
+}
+
+template<typename K, typename D>
+typename TreeMap<K,D>::Node* TreeMap<K, D>::findNode(K key, TreeMap::Node *_root) {
+    if(!_root)
+        return nullptr;
+    if (key == _root->key)
+        return _root;
+    if (key > _root->key)
+        return findNode(key, _root->right);
+    else
+        return findNode(key, _root->left);
 }
 
 
