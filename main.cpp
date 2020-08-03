@@ -65,7 +65,7 @@ void readTaxiData(bool selection){
     taxiData.close();
 }
 
-void readUberData(selection){
+void readUberData(bool selection){
     ifstream uberData("UberTripDataCSV.csv");
 
     string licenseNum, dispatchBase, pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line;
