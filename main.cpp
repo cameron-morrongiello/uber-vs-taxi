@@ -18,7 +18,7 @@ int main() {
     return 0;
 }
 
-void readTaxiData(bool treeSelected){
+void readTaxiData(bool selection){
     ifstream taxiData("TaxiTripDataCSV.csv");
 
     string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line;
@@ -56,7 +56,7 @@ void readTaxiData(bool treeSelected){
         int dropoffIDint = stoi(dropoffID);
         tripInfo.push_back(dropoffIDint);
 
-        if(treeSelected == true)
+        if(selection == true)
             treeMap[pickup] = tripInfo;
         else
             hashMap[pickup] = tripInfo;
@@ -65,7 +65,7 @@ void readTaxiData(bool treeSelected){
     taxiData.close();
 }
 
-void readUberData(){
+void readUberData(selection){
     ifstream uberData("UberTripDataCSV.csv");
 
     string licenseNum, dispatchBase, pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line;
@@ -102,7 +102,7 @@ void readUberData(){
         int dropoffIDint = stoi(dropoffID);
         tripInfo.push_back(dropoffIDint);
 
-        if(treeSelected == true)
+        if(selection == true)
             treeMap[pickup] = tripInfo;
         else
             hashMap[pickup] = tripInfo;
