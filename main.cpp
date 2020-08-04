@@ -1,10 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
 #include "TreeMap.h"
 #include "HashMap.h"
 using namespace std;
 
+void readTaxiData(bool selection);
+void readUberData(bool selection);
 
 int main() {
     TreeMap<int,vector<int>> treeMap;
@@ -18,7 +21,7 @@ int main() {
     return 0;
 }
 
-void readTaxiData(bool selecteion){
+void readTaxiData(bool selection){
     ifstream taxiData("TaxiTripDataCSV.csv");
 
     string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line;
@@ -31,14 +34,14 @@ void readTaxiData(bool selecteion){
         line_stream.str(line);
         getline(line_stream,, ",");
         getline(line_stream, pickupFull, ",");
-        for(int j = 0; j < pickupFull.length; j++){
+        for(int j = 0; j < pickupFull.length(); j++){
             if(pickupFull[i] != '/' && pickupFull[i] != ' ' && pickupFull[i] != ':'){
                 pickupFix += pickupFull[i];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ",");
-        for(int k = 0; k < dropoffFull.length; k++){
+        for(int k = 0; k < dropoffFull.length(); k++){
             if(dropoffFull[i] != '/' && dropoffFull[i] != ' ' && dropoffFull[i] != ':'){
                 dropoffFix += dropoffFull[i];
             }
@@ -81,14 +84,14 @@ void readUberData(bool selection){
         }
         getline(line_stream, dispatchBase, ",");
         getline(line_stream, pickupFull, ",");
-        for(int j = 0; j < pickupFull.length; j++){
+        for(int j = 0; j < pickupFull.length(); j++){
             if(pickupFull[i] != '/' && pickupFull[i] != ' ' && pickupFull[i] != ':'){
                 pickupFix += pickupFull[i];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ",");
-        for(int k = 0; k < dropoffFull.length; k++){
+        for(int k = 0; k < dropoffFull.length(); k++){
             if(dropoffFull[i] != '/' && dropoffFull[i] != ' ' && dropoffFull[i] != ':'){
                 dropoffFix += dropoffFull[i];
             }
