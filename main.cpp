@@ -41,14 +41,20 @@ void readTaxiData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
         getline(line_stream, token, ',');
         getline(line_stream, pickupFull, ',');
         for (int j = 0; j < pickupFull.length(); j++) {
-            if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
+            if(pickupFull[i] == '/' && pickupFull[i+2] == '/'){
+                pickupFix += '0';
+            }
+            else if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ',');
         for (int k = 0; k < dropoffFull.length(); k++) {
-            if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
+            if(dropoffFull[i] == '/' && dropoffFull[i+2] == '/'){
+                dropoffFix += '0';
+            }
+            else if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
         }
@@ -92,14 +98,20 @@ void readUberData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
         getline(line_stream, dispatchBase, ',');
         getline(line_stream, pickupFull, ',');
         for (int j = 0; j < pickupFull.length(); j++) {
-            if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
+            if(pickupFull[i] == '/' && pickupFull[i+2] == '/'){
+                pickupFix += '0';
+            }
+            else if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ',');
         for (int k = 0; k < dropoffFull.length(); k++) {
-            if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
+            if(dropoffFull[i] == '/' && dropoffFull[i+2] == '/'){
+                dropoffFix += '0';
+            }
+            else if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
         }
