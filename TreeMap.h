@@ -50,7 +50,7 @@ public:
 
     void insert(K key, D data);
 
-    D find(K key);
+    bool find(K key);
 
     void print();
 };
@@ -197,11 +197,10 @@ void TreeMap<K, D>::printTree(TreeMap::Node *_root) {
 }
 
 template<typename K, typename D>
-D TreeMap<K, D>::find(K key) {
+bool TreeMap<K, D>::find(K key) {
     Node *node = findNode(key, root);
-    if (node)
-        return node->data;
-    return D(); // Returns default value if cannot find
+    return node != nullptr;
+    // Returns false if not found
 }
 
 template<typename K, typename D>
