@@ -18,7 +18,7 @@ int main() {
     return 0;
 }
 
-void readTaxiData(bool selection){
+void readTaxiData(bool selecteion){
     ifstream taxiData("TaxiTripDataCSV.csv");
 
     string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line;
@@ -27,19 +27,19 @@ void readTaxiData(bool selection){
 
     for(int i = 1; i< 8001; i++){
         vector<int> tripInfo;
-        getline(uberData, line, '\n');
+        getline(taxiData, line, '\n');
         line_stream.str(line);
         getline(line_stream,, ",");
         getline(line_stream, pickupFull, ",");
         for(int j = 0; j < pickupFull.length; j++){
-            if(pickupFull[i] != '/' && ' ' && ':'){
+            if(pickupFull[i] != '/' && pickupFull[i] != ' ' && pickupFull[i] != ':'){
                 pickupFix += pickupFull[i];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ",");
         for(int k = 0; k < dropoffFull.length; k++){
-            if(dropoffFull[i] != '/' && ' ' && ':'){
+            if(dropoffFull[i] != '/' && dropoffFull[i] != ' ' && dropoffFull[i] != ':'){
                 dropoffFix += dropoffFull[i];
             }
         }
@@ -82,14 +82,14 @@ void readUberData(bool selection){
         getline(line_stream, dispatchBase, ",");
         getline(line_stream, pickupFull, ",");
         for(int j = 0; j < pickupFull.length; j++){
-            if(pickupFull[i] != '/' && ' ' && ':'){
+            if(pickupFull[i] != '/' && pickupFull[i] != ' ' && pickupFull[i] != ':'){
                 pickupFix += pickupFull[i];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ",");
         for(int k = 0; k < dropoffFull.length; k++){
-            if(dropoffFull[i] != '/' && ' ' && ':'){
+            if(dropoffFull[i] != '/' && dropoffFull[i] != ' ' && dropoffFull[i] != ':'){
                 dropoffFix += dropoffFull[i];
             }
         }
