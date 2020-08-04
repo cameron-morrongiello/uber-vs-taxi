@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
 #include "TreeMap.h"
 #include "HashMap.h"
 using namespace std;
@@ -24,7 +25,7 @@ int main() {
 void readTaxiData(bool selection){
     ifstream taxiData("TaxiTripDataCSV.csv");
 
-    string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line;
+    string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, line, token;
     istringstream line_stream;
 
 
@@ -32,15 +33,15 @@ void readTaxiData(bool selection){
         vector<int> tripInfo;
         getline(taxiData, line, '\n');
         line_stream.str(line);
-        getline(line_stream,, ",");
-        getline(line_stream, pickupFull, ",");
+        getline(line_stream,token, ',');
+        getline(line_stream, pickupFull, ',');
         for(int j = 0; j < pickupFull.length(); j++){
             if(pickupFull[i] != '/' && pickupFull[i] != ' ' && pickupFull[i] != ':'){
                 pickupFix += pickupFull[i];
             }
         }
         int pickup = stoi(pickupFix);
-        getline(line_stream, dropoffFull, ",");
+        getline(line_stream, dropoffFull, ',');
         for(int k = 0; k < dropoffFull.length(); k++){
             if(dropoffFull[i] != '/' && dropoffFull[i] != ' ' && dropoffFull[i] != ':'){
                 dropoffFix += dropoffFull[i];
@@ -48,14 +49,14 @@ void readTaxiData(bool selection){
         }
         int dropoff = stoi(dropoffFix);
         tripInfo.push_back(dropoff);
-        getline(line_stream,, ",");
-        getline(line_stream,, ",");
-        getline(line_stream,, ",");
-        getline(line_stream,, ",");
-        getline(line_stream, pickupID, ",");
+        getline(line_stream,token, ',');
+        getline(line_stream,token, ',');
+        getline(line_stream,token, ',');
+        getline(line_stream,token, ',');
+        getline(line_stream, pickupID, ',');
         int pickupIDint = stoi(pickupID);
         tripInfo.push_back(pickupIDint);
-        getline(line_stream, dropoffID, ",");
+        getline(line_stream, dropoffID, ',');
         int dropoffIDint = stoi(dropoffID);
         tripInfo.push_back(dropoffIDint);
 
@@ -78,19 +79,19 @@ void readUberData(bool selection){
         vector<int> tripInfo;
         getline(uberData, line, '\n');
         line_stream.str(line);
-        getline(line_stream, licenseNum, ",");
+        getline(line_stream, licenseNum, ',');
         if(licenseNum != "HV0003"){
             break;
         }
-        getline(line_stream, dispatchBase, ",");
-        getline(line_stream, pickupFull, ",");
+        getline(line_stream, dispatchBase, ',');
+        getline(line_stream, pickupFull, ',');
         for(int j = 0; j < pickupFull.length(); j++){
             if(pickupFull[i] != '/' && pickupFull[i] != ' ' && pickupFull[i] != ':'){
                 pickupFix += pickupFull[i];
             }
         }
         int pickup = stoi(pickupFix);
-        getline(line_stream, dropoffFull, ",");
+        getline(line_stream, dropoffFull, ',');
         for(int k = 0; k < dropoffFull.length(); k++){
             if(dropoffFull[i] != '/' && dropoffFull[i] != ' ' && dropoffFull[i] != ':'){
                 dropoffFix += dropoffFull[i];
@@ -98,10 +99,10 @@ void readUberData(bool selection){
         }
         int dropoff = stoi(dropoffFix);
         tripInfo.push_back(dropoff);
-        getline(line_stream, pickupID, ",");
+        getline(line_stream, pickupID, ',');
         int pickupIDint = stoi(pickupID);
         tripInfo.push_back(pickupIDint);
-        getline(line_stream, dropoffID, ",");
+        getline(line_stream, dropoffID, ',');
         int dropoffIDint = stoi(dropoffID);
         tripInfo.push_back(dropoffIDint);
 
