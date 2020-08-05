@@ -120,12 +120,16 @@ void readTaxiData(bool selection, TreeMap<long long,vector<long long>> &treeMap,
         getline(line_stream,token, ',');
         getline(line_stream, pickupFull, ',');
 
+//        cout << pickupFull << endl;
+
         for (int j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         long long pickup = stoll(pickupFix);
+
+//        cout << pickupFix << endl;
         getline(line_stream, dropoffFull, ',');
         for (int k = 0; k < dropoffFull.length(); k++) {
             if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
@@ -162,8 +166,10 @@ void readUberData(bool selection, TreeMap<long long, vector<long long>> &treeMap
     while(!uberData.eof()) {
         string  dispatchBase, pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix;
         vector<long long> tripInfo;
-        getline(uberData, line);
+        getline(uberData, line, '\n');
         line_stream.str(line);
+
+//        cout << line <<
         getline(line_stream, dispatchBase, ',');
         getline(line_stream, pickupFull, ',');
 
@@ -187,10 +193,24 @@ void readUberData(bool selection, TreeMap<long long, vector<long long>> &treeMap
         long long dropoff = stoll(dropoffFix);
         tripInfo.push_back(dropoff);
         getline(line_stream, pickupID, ',');
-        long long pickupIDlong = stoll(pickupID);
+        long long pickupIDlong;
+
+        try {
+            pickupIDlong = stoll(pickupID);
+        } catch (invalid_argument) {
+            pickupIDlong = 0;
+        }
+
         tripInfo.push_back(pickupIDlong);
         getline(line_stream, dropoffID, ',');
-        long long dropoffIDlong= stoll(dropoffID);
+
+        long long dropoffIDlong;
+        try {
+            dropoffIDlong = stoll(pickupID);
+        } catch (invalid_argument) {
+            dropoffIDlong = 0;
+        }
+
         tripInfo.push_back(dropoffIDlong);
 
         if (selection)
