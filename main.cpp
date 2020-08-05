@@ -122,26 +122,14 @@ void readTaxiData(bool selection, TreeMap<int,vector<int>> &treeMap,  HashMap<in
         getline(line_stream,token, ',');
         getline(line_stream, pickupFull, ',');
         for (int j = 0; j < pickupFull.length(); j++) {
-            if(j + 2 < pickupFull.length() && pickupFull[j] == '/' && pickupFull[j+2] == '/'){
-                pickupFix += '0';
-            }
-            else if(j + 2 < pickupFull.length() && pickupFull[j] == ' ' && pickupFull[j+2] == ':'){
-                pickupFix += '0';
-            }
-            else if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
+            if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ',');
         for (int k = 0; k < dropoffFull.length(); k++) {
-            if(k + 2 < dropoffFull.length() && dropoffFull[k] == '/' && dropoffFull[k+2] == '/'){
-                dropoffFix += '0';
-            }
-            else if(k + 2 < dropoffFull.length() && dropoffFull[k] == ' ' && dropoffFull[k+2] == ':'){
-                dropoffFix += '0';
-            }
-            else if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
+            if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
         }
@@ -187,26 +175,14 @@ void readUberData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
         getline(line_stream, dispatchBase, ',');
         getline(line_stream, pickupFull, ',');
         for (int j = 0; j < pickupFull.length(); j++) {
-            if(j + 2 < pickupFull.length() && pickupFull[j] == '/' && pickupFull[j+2] == '/'){
-                pickupFix += '0';
-            }
-            else if(j + 2 < pickupFull.length() && pickupFull[j] == ' ' && pickupFull[j+2] == ':'){
-                pickupFix += '0';
-            }
-            else if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
+            if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         int pickup = stoi(pickupFix);
         getline(line_stream, dropoffFull, ',');
         for (int k = 0; k < dropoffFull.length(); k++) {
-            if(k + 2 < dropoffFull.length() && dropoffFull[k] == '/' && dropoffFull[k+2] == '/'){
-                dropoffFix += '0';
-            }
-            else if(k + 2 < dropoffFull.length() && dropoffFull[k] == ' ' && dropoffFull[k+2] == ':'){
-                dropoffFix += '0';
-            }
-            else if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
+            if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
         }
