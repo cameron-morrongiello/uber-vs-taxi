@@ -44,6 +44,9 @@ void readTaxiData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
             if(j + 2 < pickupFull.length() && pickupFull[j] == '/' && pickupFull[j+2] == '/'){
                 pickupFix += '0';
             }
+            else if(j + 2 < pickupFull.length() && pickupFull[j] == ' ' && pickupFull[j+2] == ':'){
+                pickupFix += '0';
+            }
             else if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
@@ -53,6 +56,9 @@ void readTaxiData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
         for (int k = 0; k < dropoffFull.length(); k++) {
             if(k + 2 < dropoffFull.length() && dropoffFull[k] == '/' && dropoffFull[k+2] == '/'){
                 dropoffFix += '0';
+            }
+            else if(k + 2 < dropoffFull.length() && dropoffFull[k] == ' ' && dropoffFull[k+2] == ':'){
+                pickupFix += '0';
             }
             else if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
@@ -101,6 +107,9 @@ void readUberData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
             if(j + 2 < pickupFull.length() && pickupFull[j] == '/' && pickupFull[j+2] == '/'){
                 pickupFix += '0';
             }
+            else if(j + 2 < pickupFull.length() && pickupFull[j] == ' ' && pickupFull[j+2] == ':'){
+                pickupFix += '0';
+            }
             else if (pickupFull[j] != '/' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
@@ -110,6 +119,9 @@ void readUberData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
         for (int k = 0; k < dropoffFull.length(); k++) {
             if(k + 2 < dropoffFull.length() && dropoffFull[k] == '/' && dropoffFull[k+2] == '/'){
                 dropoffFix += '0';
+            }
+            else if(k + 2 < dropoffFull.length() && dropoffFull[k] == ' ' && dropoffFull[k+2] == ':'){
+                pickupFix += '0';
             }
             else if (dropoffFull[k] != '/' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
