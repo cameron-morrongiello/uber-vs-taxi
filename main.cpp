@@ -15,7 +15,7 @@ using namespace std::chrono;
 void readTaxiData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<long,vector<long>> &hashMap);
 void readUberData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<long,vector<long>> &hashMap);
 
-long main() {
+int main() {
     TreeMap<long, vector<long>> taxiTreeMap;
     TreeMap<long, vector<long>> uberTreeMap;
     HashMap<long, vector<long>> taxiHashMap;
@@ -27,7 +27,7 @@ long main() {
             "Enter [1] to load data in a Red Black Tree Map.\n"
             "Enter [2] to load data in a Hash Map.\n" << endl;
 
-    long loadSelection;
+    int loadSelection;
     cin >> loadSelection;
 
     bool mapSelection;
@@ -121,14 +121,14 @@ void readTaxiData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<
         line_stream.str(line);
         getline(line_stream,token, ',');
         getline(line_stream, pickupFull, ',');
-        for (long j = 0; j < pickupFull.length(); j++) {
+        for (int j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         long pickup = stol(pickupFix);
         getline(line_stream, dropoffFull, ',');
-        for (long k = 0; k < dropoffFull.length(); k++) {
+        for (int k = 0; k < dropoffFull.length(); k++) {
             if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
@@ -170,14 +170,14 @@ void readUberData(bool selection, TreeMap<long, vector<long>> &treeMap, HashMap<
         line_stream.str(line);
         getline(line_stream, dispatchBase, ',');
         getline(line_stream, pickupFull, ',');
-        for (long j = 0; j < pickupFull.length(); j++) {
+        for (int j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
         long pickup = stol(pickupFix);
         getline(line_stream, dropoffFull, ',');
-        for (long k = 0; k < dropoffFull.length(); k++) {
+        for (int k = 0; k < dropoffFull.length(); k++) {
             if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
