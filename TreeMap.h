@@ -53,6 +53,7 @@ public:
     bool find(K key);
 
     void print();
+    Node* getRoot();
 };
 
 template<typename K, typename D>
@@ -213,6 +214,11 @@ typename TreeMap<K, D>::Node *TreeMap<K, D>::findNode(K key, TreeMap::Node *_roo
         return findNode(key, _root->right);
     else
         return findNode(key, _root->left);
+}
+
+template<typename K, typename D>
+typename TreeMap<K, D>::Node *TreeMap<K, D>::getRoot() {
+    return root;
 }
 
 
