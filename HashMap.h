@@ -49,11 +49,9 @@ HashMap<K, D>::HashMap(int capacity, double _loadFactor) : count(0) {
 
 template<typename K, typename D>
 void HashMap<K, D>::insert(K key, D data) {
-    int hashCode = key % hashTable.size();
-    if (hashTable[hashCode].empty()) {
-        count++;
-    }
+    K hashCode = key % (K)hashTable.size();
     hashTable[hashCode].push_front(std::make_pair(key, data));
+    count++;
     if (((double) count) / hashTable.size() > loadFactor)
         resize(); // size is doubled if load factor is met
 }
@@ -62,13 +60,9 @@ template<typename K, typename D>
 void HashMap<K, D>::resize() {
     std::vector<std::list<std::pair<K, D>>> newTable;
     newTable.resize(hashTable.size() * 2);
-    count = 0;
     for (auto &list : hashTable) {
         for (auto &e : list) {
-            int hashcode = e.first % newTable.size();
-            if (newTable[hashcode].empty()) {
-                count++;
-            }
+            K hashcode = e.first % (K)newTable.size();
             newTable[hashcode].push_front(std::make_pair(e.first, e.second));
         }
     }
@@ -77,7 +71,7 @@ void HashMap<K, D>::resize() {
 
 template<typename K, typename D>
 D &HashMap<K, D>::operator[](K Key) {
-    int hashcode = Key % hashTable.size();
+    K hashcode = Key % (K)hashTable.size();
     auto &list = hashTable[hashcode];
     for (auto &e : list) {
         if (e.first == Key) {
@@ -90,7 +84,7 @@ D &HashMap<K, D>::operator[](K Key) {
 
 template<typename K, typename D>
 bool HashMap<K, D>::find(K Key) {
-    int hashcode = Key % hashTable.size();
+    K hashcode = Key % (K)hashTable.size();
     auto &list = hashTable[hashcode];
     for (auto &e : list) {
         if (e.first == Key) {
