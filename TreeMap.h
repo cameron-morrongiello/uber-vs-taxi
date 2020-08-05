@@ -22,7 +22,7 @@ public:
     };
 
 private:
-    Node *root;
+
 
     Node *treeInsert(Node *_root, Node *_input);
 
@@ -42,6 +42,9 @@ private:
 
 
 public:
+
+    Node *root;
+
     TreeMap();
 
     ~TreeMap();
@@ -220,6 +223,8 @@ template<typename K, typename D>
 typename TreeMap<K, D>::Node *TreeMap<K, D>::getRoot() {
     return root;
 }
+
+
 
 
 #endif //TAXIPROJECT_TREEMAP_H
