@@ -33,7 +33,7 @@ void readTaxiData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
     getline(taxiData, line, '\n');
 
 
-    for (int i = 1; i < 8001; i++) {
+    while(!taxiData.eof()) {
         string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, token;
         vector<int> tripInfo;
         getline(taxiData, line, '\n');
@@ -92,7 +92,7 @@ void readUberData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<in
     istringstream line_stream;
     getline(uberData, line, '\n');
 
-    for (int i = 1; i < 8001; i++) {
+    while(!uberData.eof()) {
         string licenseNum, dispatchBase, pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix;
         vector<int> tripInfo;
         getline(uberData, line, '\n');
