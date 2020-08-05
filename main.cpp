@@ -70,7 +70,7 @@ int main() {
                     break;
                 case 2 :
                     cout << "Select an hour of the day to compare trips:\n" << endl;
-                    long long hour;
+                    int hour;
                     cin >>  hour;
                     Display::timeDayTree(taxiTreeMap, uberTreeMap, hour);
                     break;

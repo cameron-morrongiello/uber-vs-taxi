@@ -23,12 +23,14 @@ public:
 
 
     static void
-    timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap, long long hour);
+    timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap, int hour);
     static void
-    timeDayHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,std::vector<long long >> &uberHashMap, long long hour);
+    timeDayHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,std::vector<long long >> &uberHashMap, int hour);
 
     static void avgTripTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,std::vector<long long >> &uberTreeMap);
     static void avgTripHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,std::vector<long long >> &uberHashMap);
+
+    static void perNeighborhoodTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,std::vector<long long >> &uberTreeMap, int neighborhood);
 
 
 
@@ -96,7 +98,7 @@ void Display::perMonthHash(HashMap<long long , std::vector<long long >> &taxiHas
 }
 
 void Display::timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap,
-                          long long hour) {
+                          int hour) {
 
     std::vector<long long> resTaxi = calcTimeTree(taxiTreeMap, hour);
     std::vector<long long> resUber = calcTimeTree(uberTreeMap, hour);
@@ -111,7 +113,7 @@ void Display::timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTree
 }
 
 void Display::timeDayHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long , std::vector<long long >> &uberHashMap,
-                          long long hour) {
+                          int hour) {
 
     std::vector<long long > resTaxi = calcTimeHash(taxiHashMap, hour);
     std::vector<long long > resUber = calcTimeHash(uberHashMap, hour);
@@ -180,8 +182,6 @@ std::vector<int> Display::calcPerMonthHash(HashMap<long long , std::vector<long 
     auto taxiHashTable = hashMap.getHashTable();
     for(auto &list : taxiHashTable){
         for(auto &element : list){
-            std::cout << (element.first) <<std::endl;
-            std::cout << getHourNum(element.first) <<std::endl;
             switch (getMonthNum(element.first)){
                 case 1 :
                     ++jan;
