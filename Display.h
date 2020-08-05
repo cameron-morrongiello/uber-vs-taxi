@@ -46,7 +46,6 @@ private:
     static int  calcAvgTripHash(HashMap<long long ,std::vector<long long >> &hashMap);
 
 
-
     // Tree
     static std::vector<int > calcPerMonthTree(TreeMap<long long , std::vector<long long >> &treeMap);
     static std::vector<long long > calcTimeTree(TreeMap<long long , std::vector<long long >> &treeMap, long long hour);

@@ -120,7 +120,6 @@ void readTaxiData(bool selection, TreeMap<long long,vector<long long>> &treeMap,
         getline(line_stream,token, ',');
         getline(line_stream, pickupFull, ',');
 
-//        cout << pickupFull << endl;
 
         for (int j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
@@ -129,7 +128,6 @@ void readTaxiData(bool selection, TreeMap<long long,vector<long long>> &treeMap,
         }
         long long pickup = stoll(pickupFix);
 
-//        cout << pickupFix << endl;
         getline(line_stream, dropoffFull, ',');
         for (int k = 0; k < dropoffFull.length(); k++) {
             if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
@@ -169,13 +167,8 @@ void readUberData(bool selection, TreeMap<long long, vector<long long>> &treeMap
         getline(uberData, line, '\n');
         line_stream.str(line);
 
-//        cout << line <<
         getline(line_stream, dispatchBase, ',');
         getline(line_stream, pickupFull, ',');
-
-
-
-        cout << pickupFull << endl;
 
         for (int j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
