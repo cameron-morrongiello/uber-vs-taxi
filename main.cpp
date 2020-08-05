@@ -108,7 +108,7 @@ int main() {
 }
 
 void readTaxiData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<long,vector<long>> &hashMap){
-    ifstream taxiData("TaxiTripDataCSV.csv");
+    ifstream taxiData("TaxiData.csv");
     string line;
     istringstream line_stream;
     getline(taxiData, line, '\n');
@@ -158,7 +158,7 @@ void readTaxiData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<
 }
 
 void readUberData(bool selection, TreeMap<long, vector<long>> &treeMap, HashMap<long, vector<long>> &hashMap) {
-    ifstream uberData("UberTripDataCSV.csv");
+    ifstream uberData("UberData.csv");
     string line;
     istringstream line_stream;
     getline(uberData, line, '\n');
