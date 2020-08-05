@@ -12,14 +12,14 @@ using namespace std;
 using namespace std::chrono;
 
 
-void readTaxiData(bool selection, TreeMap<int,vector<int>> &treeMap,  HashMap<int,vector<int>> &hashMap);
-void readUberData(bool selection, TreeMap<int,vector<int>> &treeMap,  HashMap<int,vector<int>> &hashMap);
+void readTaxiData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<long,vector<long>> &hashMap);
+void readUberData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<long,vector<long>> &hashMap);
 
-int main() {
-    TreeMap<int, vector<int>> taxiTreeMap;
-    TreeMap<int, vector<int>> uberTreeMap;
-    HashMap<int, vector<int>> taxiHashMap;
-    HashMap<int, vector<int>> uberHashMap;
+long main() {
+    TreeMap<long, vector<long>> taxiTreeMap;
+    TreeMap<long, vector<long>> uberTreeMap;
+    HashMap<long, vector<long>> taxiHashMap;
+    HashMap<long, vector<long>> uberHashMap;
 
     cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
             "Welcome to Uber vs Taxi, a program to visualize the trends between the two market leaders in New York City, 2019.\n"
@@ -27,7 +27,7 @@ int main() {
             "Enter [1] to load data in a Red Black Tree Map.\n"
             "Enter [2] to load data in a Hash Map.\n" << endl;
 
-    int loadSelection;
+    long loadSelection;
     cin >> loadSelection;
 
     bool mapSelection;
@@ -53,7 +53,7 @@ int main() {
                 "[3] Average Trip Duration\n"
                 "[0] Exit" << endl;
 
-        int displaySelection;
+        long displaySelection;
 
         cin >> displaySelection;
 
@@ -70,7 +70,7 @@ int main() {
                     break;
                 case 2 :
                     cout << "Select an hour of the day to compare trips:\n" << endl;
-                    int hour;
+                    long hour;
                     cin >>  hour;
                     Display::timeDayTree(taxiTreeMap, uberTreeMap, hour);
                     break;
@@ -93,7 +93,7 @@ int main() {
                     break;
                 case 2 :
                     cout << "Select an hour of the day (on 24 hour clock) to compare trips:\n" << endl;
-                    int hour;
+                    long hour;
                     cin >>  hour;
                     Display::timeDayHash(taxiHashMap, uberHashMap, hour);
                     break;
@@ -107,7 +107,7 @@ int main() {
     return 0;
 }
 
-void readTaxiData(bool selection, TreeMap<int,vector<int>> &treeMap,  HashMap<int,vector<int>> &hashMap){
+void readTaxiData(bool selection, TreeMap<long,vector<long>> &treeMap,  HashMap<long,vector<long>> &hashMap){
     ifstream taxiData("TaxiTripDataCSV.csv");
     string line;
     istringstream line_stream;
@@ -116,35 +116,35 @@ void readTaxiData(bool selection, TreeMap<int,vector<int>> &treeMap,  HashMap<in
 
     while(!taxiData.eof()) {
         string pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix, token;
-        vector<int> tripInfo;
+        vector<long> tripInfo;
         getline(taxiData, line, '\n');
         line_stream.str(line);
         getline(line_stream,token, ',');
         getline(line_stream, pickupFull, ',');
-        for (int j = 0; j < pickupFull.length(); j++) {
+        for (long j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
-        int pickup = stoi(pickupFix);
+        long pickup = stol(pickupFix);
         getline(line_stream, dropoffFull, ',');
-        for (int k = 0; k < dropoffFull.length(); k++) {
+        for (long k = 0; k < dropoffFull.length(); k++) {
             if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
         }
-        int dropoff = stoi(dropoffFix);
+        long dropoff = stol(dropoffFix);
         tripInfo.push_back(dropoff);
         getline(line_stream,token, ',');
         getline(line_stream,token, ',');
         getline(line_stream,token, ',');
         getline(line_stream,token, ',');
         getline(line_stream, pickupID, ',');
-        int pickupIDint = stoi(pickupID);
-        tripInfo.push_back(pickupIDint);
+        long pickupIDlong = stol(pickupID);
+        tripInfo.push_back(pickupIDlong);
         getline(line_stream, dropoffID, ',');
-        int dropoffIDint = stoi(dropoffID);
-        tripInfo.push_back(dropoffIDint);
+        long dropoffIDlong = stol(dropoffID);
+        tripInfo.push_back(dropoffIDlong);
 
         if(selection)
             treeMap[pickup] = tripInfo;
@@ -157,43 +157,39 @@ void readTaxiData(bool selection, TreeMap<int,vector<int>> &treeMap,  HashMap<in
     taxiData.close();
 }
 
-void readUberData(bool selection, TreeMap<int, vector<int>> &treeMap, HashMap<int, vector<int>> &hashMap) {
+void readUberData(bool selection, TreeMap<long, vector<long>> &treeMap, HashMap<long, vector<long>> &hashMap) {
     ifstream uberData("UberTripDataCSV.csv");
     string line;
     istringstream line_stream;
     getline(uberData, line, '\n');
 
-    for (int i = 1; i < 8001; i++) {
-        string licenseNum, dispatchBase, pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix;
-        vector<int> tripInfo;
+    while(!uberData.eof()) {
+        string  dispatchBase, pickupFull, dropoffFull, pickupID, dropoffID, pickupFix, dropoffFix;
+        vector<long> tripInfo;
         getline(uberData, line, '\n');
         line_stream.str(line);
-        getline(line_stream, licenseNum, ',');
-        if (licenseNum != "HV0003") {
-            continue;
-        }
         getline(line_stream, dispatchBase, ',');
         getline(line_stream, pickupFull, ',');
-        for (int j = 0; j < pickupFull.length(); j++) {
+        for (long j = 0; j < pickupFull.length(); j++) {
             if (pickupFull[j] != '-' && pickupFull[j] != ' ' && pickupFull[j] != ':') {
                 pickupFix += pickupFull[j];
             }
         }
-        int pickup = stoi(pickupFix);
+        long pickup = stol(pickupFix);
         getline(line_stream, dropoffFull, ',');
-        for (int k = 0; k < dropoffFull.length(); k++) {
+        for (long k = 0; k < dropoffFull.length(); k++) {
             if (dropoffFull[k] != '-' && dropoffFull[k] != ' ' && dropoffFull[k] != ':') {
                 dropoffFix += dropoffFull[k];
             }
         }
-        int dropoff = stoi(dropoffFix);
+        long dropoff = stol(dropoffFix);
         tripInfo.push_back(dropoff);
         getline(line_stream, pickupID, ',');
-        int pickupIDint = stoi(pickupID);
-        tripInfo.push_back(pickupIDint);
+        long pickupIDlong = stol(pickupID);
+        tripInfo.push_back(pickupIDlong);
         getline(line_stream, dropoffID, ',');
-        int dropoffIDint = stoi(dropoffID);
-        tripInfo.push_back(dropoffIDint);
+        long dropoffIDlong = stol(dropoffID);
+        tripInfo.push_back(dropoffIDlong);
 
         if (selection)
             treeMap[pickup] = tripInfo;
