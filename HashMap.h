@@ -28,6 +28,7 @@ public:
     void insert(K key, D data);
 
     bool find(K Key);
+    std::vector<std::list<std::pair<K, D>>>& getHashTable();
 };
 
 template<typename K, typename D>
@@ -97,6 +98,11 @@ bool HashMap<K, D>::find(K Key) {
         }
     }
     return false;
+}
+
+template<typename K, typename D>
+std::vector<std::list<std::pair<K, D>>> &HashMap<K, D>::getHashTable() {
+    return hashTable;
 }
 
 
