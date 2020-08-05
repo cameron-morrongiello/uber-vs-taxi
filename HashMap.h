@@ -12,8 +12,8 @@ template<typename K, typename D>
 class HashMap {
     std::vector<std::list<std::pair<K, D>>> hashTable;
     int count{};
-    double loadFactor{};
 
+    double loadFactor{};
     void resize();
 
 public:
@@ -85,7 +85,7 @@ D &HashMap<K, D>::operator[](K Key) {
         }
     }
     insert(Key, D());
-    operator[](Key);
+    return operator[](Key);
 }
 
 template<typename K, typename D>
