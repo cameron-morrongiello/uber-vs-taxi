@@ -159,7 +159,7 @@ int Display::getTotalSeconds(long long datelong) {
 
     int hour = stoi(dateString.substr(8, 2));
     int min = stoi(dateString.substr(10, 2));
-    int sec = stoi(dateString.substr(112, 2));
+    int sec = stoi(dateString.substr(12, 2));
 
     return (hour * 3600) + (min * 60) + sec;
 }
