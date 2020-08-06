@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <cmath>
 
 #ifndef UBER_VS_TAXI_DISPLAY_H
 #define UBER_VS_TAXI_DISPLAY_H
@@ -118,10 +119,12 @@ void Display::timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTree
     std::vector<long long> resTaxi = calcTimeTree(taxiTreeMap, hour);
     std::vector<long long> resUber = calcTimeTree(uberTreeMap, hour);
 
+    const char * format = "%.2f";
+
     std::cout << "Total trips before and after " << hour << " o'clock (Feb - Aug)" << std::endl;
-    std::cout << "Hour   |   Uber   |   Taxi " << std::endl;
-    std::cout << "Before |   " << resUber.at(0) << "    |   " << resTaxi.at(0) << std::endl;
-    std::cout << "After  |   " << resUber.at(1) << "    |   " << resTaxi.at(1) << std::endl;
+    std::cout << "Hour    |   Uber    |   Taxi " << std::endl;
+    std::cout << "Before  |   " << resUber.at(0) << "    |   " << resTaxi.at(0) << std::endl;
+    std::cout << "% After |   " <<printf(format, round(((float)resUber.at(1) / ((float)resUber.at(0) + (float)resUber.at(1))) * 100.0f)) << "   |   " << printf(format, round((((float)resTaxi.at(1) / ((float)resTaxi.at(0) + (float)resTaxi.at(1)))) * 100.0f)) << std::endl;
 
 
 
@@ -133,10 +136,13 @@ void Display::timeDayHash(HashMap<long long , std::vector<long long >> &taxiHash
     std::vector<long long > resTaxi = calcTimeHash(taxiHashMap, hour);
     std::vector<long long > resUber = calcTimeHash(uberHashMap, hour);
 
+    const char * format = "%.1f";
+
     std::cout << "Total trips before and after " << hour << " o'clock (Feb - Aug)" << std::endl;
-    std::cout << "Hour   |   Uber   |   Taxi " << std::endl;
-    std::cout << "Before |   " << resUber.at(0) << "    |   " << resTaxi.at(0) << std::endl;
-    std::cout << "After  |   " << resUber.at(1) << "    |   " << resTaxi.at(1) << std::endl;
+    std::cout << "Hour    |   Uber    |   Taxi " << std::endl;
+    std::cout << "Before  |   " << resUber.at(0) << "    |   " << resTaxi.at(0) << std::endl;
+    std::cout << "After   |   " << resUber.at(1) << "    |   " << resTaxi.at(1) << std::endl;
+    std::cout << "% After |   " <<printf(format, round(((float)resUber.at(1) / ((float)resUber.at(0) + (float)resUber.at(1))) * 100.0f)) << "   |   " << printf(format, round((((float)resTaxi.at(1) / ((float)resTaxi.at(0) + (float)resTaxi.at(1)))) * 100.0f)) << std::endl;
 
 }
 

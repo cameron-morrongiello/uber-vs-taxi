@@ -22,7 +22,7 @@ int main() {
     HashMap<long long, vector<long long>> uberHashMap;
 
     cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
-            "Welcome to Uber vs Taxi, a program to visualize the trends between the two market leaders in New York City, 2019.\n"
+            "Welcome to Uber vs Yellow Taxi, a program to visualize the trends between the two market leaders in New York City, 2019.\n"
             "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n"
             "Enter [1] to load data in a Red Black Tree Map.\n"
             "Enter [2] to load data in a Hash Map.\n" << endl;
@@ -92,7 +92,7 @@ int main() {
             switch(displaySelection) {
 
                 case 0 :
-                    cout << "Thank you for using Uber vs Taxi Data Visualization Experience!"  << endl;
+                    cout << "Thank you for using Uber vs Yellow Taxi Data Visualization Experience!"  << endl;
                     exit = true;
                     break;
                 case 1 :
@@ -204,7 +204,7 @@ void readUberData(bool selection, TreeMap<long long, vector<long long>> &treeMap
         try {
             pickupIDlong = stoll(pickupID);
         } catch (invalid_argument) {
-            pickupIDlong = 0;
+            pickupIDlong = 264;
         }
 
         tripInfo.push_back(pickupIDlong);
@@ -214,7 +214,7 @@ void readUberData(bool selection, TreeMap<long long, vector<long long>> &treeMap
         try {
             dropoffIDlong = stoll(pickupID);
         } catch (invalid_argument) {
-            dropoffIDlong = 0;
+            dropoffIDlong = 264;
         }
 
         tripInfo.push_back(dropoffIDlong);
