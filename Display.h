@@ -18,20 +18,28 @@ class Display{
 
 public:
 
-    static void perMonthTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,std::vector<long long >> &uberTreeMap);
-    static void perMonthHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,std::vector<long long >> &uberHashMap);
+    static void perMonthTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+            std::vector<long long >> &uberTreeMap);
+    static void perMonthHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,
+            std::vector<long long >> &uberHashMap);
 
 
     static void
-    timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap, int hour);
+    timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+            std::vector<long long >> &uberTreeMap, int hour);
     static void
-    timeDayHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,std::vector<long long >> &uberHashMap, int hour);
+    timeDayHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,
+            std::vector<long long >> &uberHashMap, int hour);
 
-    static void avgTripTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,std::vector<long long >> &uberTreeMap);
-    static void avgTripHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,std::vector<long long >> &uberHashMap);
+    static void avgTripTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+            std::vector<long long >> &uberTreeMap);
+    static void avgTripHash(HashMap<long long ,std::vector<long long >> &taxiHashMap, HashMap<long long ,
+            std::vector<long long >> &uberHashMap);
 
-    static void perNeighborhoodTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,std::vector<long long >> &uberTreeMap, int neighborhood);
-
+    static void perNeighborhoodTree(TreeMap<long long ,std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+            std::vector<long long >> &uberTreeMap, int neighborhood);
+    static void perNeighborhoodHash(HashMap<long long ,std::vector<long long >> &taxiTreeMap, HashMap<long long ,
+            std::vector<long long >> &uberTreeMap, int neighborhood);
 
 
 private:
@@ -43,24 +51,30 @@ private:
     static int getTotalSeconds(long long datelong);
 
     // Hash
-    static std::vector<int > calcPerMonthHash(HashMap<long long ,std::vector<long long >> &hashMap);
-    static std::vector<long long > calcTimeHash(HashMap<long long ,std::vector<long long >> &hashMap, long long hour);
+    static std::vector<int> calcPerMonthHash(HashMap<long long ,std::vector<long long >> &hashMap);
+    static std::vector<long long > calcTimeHash(HashMap<long long ,std::vector<long long >> &hashMap, int hour);
     static int  calcAvgTripHash(HashMap<long long ,std::vector<long long >> &hashMap);
+    static int calcNeighborhoodHash(HashMap<long long ,std::vector<long long >> &hashMap, int neighborhood);
 
 
     // Tree
     static std::vector<int > calcPerMonthTree(TreeMap<long long , std::vector<long long >> &treeMap);
-    static std::vector<long long > calcTimeTree(TreeMap<long long , std::vector<long long >> &treeMap, long long hour);
+    static std::vector<long long > calcTimeTree(TreeMap<long long , std::vector<long long >> &treeMap, int hour);
     static int  calcAvgTripTree(TreeMap<long long , std::vector<long long >> &treeMap);
+    static int calcNeighborhoodTree(TreeMap<long long ,std::vector<long long >> &treeMap, int neighborhood);
 
     // Tree Helper
-    static void treeIterate(TreeMap<long long , std::vector<long long >> &treeMap, std::vector<std::pair<long long , std::vector<long long >>> &data);
-    static void treeIterate(TreeMap<long long ,std::vector<long long >>::Node* root, std::vector<std::pair<long long , std::vector<long long >>> &data);
+    static void treeIterate(TreeMap<long long , std::vector<long long >> &treeMap, std::vector<std::pair<long long ,
+            std::vector<long long >>> &data);
+    static void treeIterate(TreeMap<long long ,std::vector<long long >>::Node* root, std::vector<std::pair<long long ,
+            std::vector<long long >>> &data);
 
 
 };
 
-void Display::perMonthTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap) {
+void Display::perMonthTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+        std::vector<long long >> &uberTreeMap) {
+
     std::vector<int > resTaxi = calcPerMonthTree(taxiTreeMap);
     std::vector<int > resUber = calcPerMonthTree(uberTreeMap);
 
@@ -77,7 +91,8 @@ void Display::perMonthTree(TreeMap<long long , std::vector<long long >> &taxiTre
 
 }
 
-void Display::perMonthHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long , std::vector<long long >> &uberHashMap) {
+void Display::perMonthHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long ,
+        std::vector<long long >> &uberHashMap) {
 
     std::vector<int> resTaxi = calcPerMonthHash(taxiHashMap);
     std::vector<int> resUber = calcPerMonthHash(uberHashMap);
@@ -97,8 +112,8 @@ void Display::perMonthHash(HashMap<long long , std::vector<long long >> &taxiHas
 
 }
 
-void Display::timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap,
-                          int hour) {
+void Display::timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+        std::vector<long long >> &uberTreeMap, int hour) {
 
     std::vector<long long> resTaxi = calcTimeTree(taxiTreeMap, hour);
     std::vector<long long> resUber = calcTimeTree(uberTreeMap, hour);
@@ -112,8 +127,8 @@ void Display::timeDayTree(TreeMap<long long , std::vector<long long >> &taxiTree
 
 }
 
-void Display::timeDayHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long , std::vector<long long >> &uberHashMap,
-                          int hour) {
+void Display::timeDayHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long ,
+        std::vector<long long >> &uberHashMap, int hour) {
 
     std::vector<long long > resTaxi = calcTimeHash(taxiHashMap, hour);
     std::vector<long long > resUber = calcTimeHash(uberHashMap, hour);
@@ -126,7 +141,9 @@ void Display::timeDayHash(HashMap<long long , std::vector<long long >> &taxiHash
 }
 
 
-void Display::avgTripTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long , std::vector<long long >> &uberTreeMap) {
+void Display::avgTripTree(TreeMap<long long , std::vector<long long >> &taxiTreeMap, TreeMap<long long ,
+        std::vector<long long >> &uberTreeMap) {
+
     long long resTaxi = calcAvgTripTree(taxiTreeMap);
     long long resUber = calcAvgTripTree(uberTreeMap);
 
@@ -137,7 +154,8 @@ void Display::avgTripTree(TreeMap<long long , std::vector<long long >> &taxiTree
 
 }
 
-void Display::avgTripHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long , std::vector<long long >> &uberHashMap) {
+void Display::avgTripHash(HashMap<long long , std::vector<long long >> &taxiHashMap, HashMap<long long ,
+        std::vector<long long >> &uberHashMap) {
 
     long long resTaxi = calcAvgTripHash(taxiHashMap);
     long long resUber = calcAvgTripHash(uberHashMap);
@@ -147,6 +165,31 @@ void Display::avgTripHash(HashMap<long long , std::vector<long long >> &taxiHash
     std::cout << "Avg Trip              |   " << resUber << "     |   " << resTaxi << std::endl;
 
 }
+
+void Display::perNeighborhoodTree(TreeMap<long long, std::vector<long long >> &taxiTreeMap,
+                                  TreeMap<long long, std::vector<long long >> &uberTreeMap, int neighborhood) {
+
+    int resTaxi = calcNeighborhoodTree(taxiTreeMap, neighborhood);
+    int resUber = calcNeighborhoodTree(uberTreeMap, neighborhood);
+
+    std::cout << "Total trips from pickup location (Feb - Aug)" << std::endl;
+    std::cout << "Pickup Location  |   Uber   |   Taxi " << std::endl;
+    std::cout << neighborhood << "              |   " << resUber << "      |   " << resTaxi << std::endl;
+
+}
+
+void Display::perNeighborhoodHash(HashMap<long long, std::vector<long long >> &taxiTreeMap,
+                                  HashMap<long long, std::vector<long long >> &uberTreeMap, int neighborhood) {
+
+    int resTaxi = calcNeighborhoodHash(taxiTreeMap, neighborhood);
+    int resUber = calcNeighborhoodHash(uberTreeMap, neighborhood);
+
+    std::cout << "Total trips from pickup location (Feb - Aug)" << std::endl;
+    std::cout << "Pickup Location  |   Uber   |   Taxi " << std::endl;
+    std::cout << neighborhood << "              |   " << resUber << "      |   " << resTaxi << std::endl;
+}
+
+
 
 int Display::getMonthNum(long long datelong) {
     std::string dateString = std::to_string(datelong);
@@ -221,7 +264,7 @@ std::vector<int> Display::calcPerMonthHash(HashMap<long long , std::vector<long 
 
 
 
-std::vector<long long > Display::calcTimeHash(HashMap<long long , std::vector<long long >> &hashMap, long long hour) {
+std::vector<long long > Display::calcTimeHash(HashMap<long long , std::vector<long long >> &hashMap, int hour) {
 
     long long before = 0, after = 0;
 
@@ -262,6 +305,22 @@ int Display::calcAvgTripHash(HashMap<long long , std::vector<long long >> &hashM
 
     }
     return ((seconds / 60) / trips);
+}
+
+int Display::calcNeighborhoodHash(HashMap<long long, std::vector<long long >> &hashMap, int neighborhood) {
+    int total = 0;
+    auto hashTable = hashMap.getHashTable();
+    for(auto &list : hashTable) {
+        for (auto &element : list) {
+
+            if(element.second.at(1) == neighborhood){
+                ++total;
+            }
+
+        }
+    }
+
+    return total;
 }
 
 std::vector<int > Display::calcPerMonthTree(TreeMap<long long , std::vector<long long >> &treeMap) {
@@ -308,7 +367,7 @@ std::vector<int > Display::calcPerMonthTree(TreeMap<long long , std::vector<long
 }
 
 
-std::vector<long long > Display::calcTimeTree(TreeMap<long long , std::vector<long long >> &treeMap, long long hour) {
+std::vector<long long > Display::calcTimeTree(TreeMap<long long , std::vector<long long >> &treeMap, int hour) {
     long long before = 0, after = 0;
 
     std::vector<std::pair<long long , std::vector<long long >>> data;
@@ -349,7 +408,21 @@ int Display::calcAvgTripTree(TreeMap<long long , std::vector<long long >> &treeM
     return ((seconds / 60) / trips);
 }
 
-void Display::treeIterate(TreeMap<long long , std::vector<long long >>::Node *root, std::vector<std::pair<long long , std::vector<long long >>> &data) {
+int Display::calcNeighborhoodTree(TreeMap<long long, std::vector<long long >> &treeMap, int neighborhood) {
+    std::vector<std::pair<long long , std::vector<long long >>> data;
+    treeIterate(treeMap, data);
+
+    int total = 0;
+    for (auto &element : data) {
+        if (element.second.at(1) == neighborhood) {
+            ++total;
+        }
+    }
+    return total;
+}
+
+void Display::treeIterate(TreeMap<long long , std::vector<long long >>::Node *root, std::vector<std::pair<long long ,
+        std::vector<long long >>> &data) {
 
     if (!root)
         return;
@@ -361,10 +434,15 @@ void Display::treeIterate(TreeMap<long long , std::vector<long long >>::Node *ro
 
 }
 
-void Display::treeIterate(TreeMap<long long , std::vector<long long >> &treeMap, std::vector<std::pair<long long , std::vector<long long >>> &data) {
+void Display::treeIterate(TreeMap<long long , std::vector<long long >> &treeMap, std::vector<std::pair<long long ,
+        std::vector<long long >>> &data) {
+
     auto root = treeMap.getRoot();
     treeIterate(root, data);
 }
+
+
+
 
 
 #endif //UBER_VS_TAXI_DISPLAY_H

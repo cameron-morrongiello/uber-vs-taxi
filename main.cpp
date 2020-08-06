@@ -51,6 +51,7 @@ int main() {
                 "[1] Total Trips per Month\n"
                 "[2] Total Trips After Time of Day\n"
                 "[3] Average Trip Duration\n"
+                "[4] Total trips from Pickup Location\n"
                 "[0] Exit" << endl;
 
         long long displaySelection;
@@ -77,6 +78,12 @@ int main() {
                 case 3:
                     Display::avgTripTree(taxiTreeMap, uberTreeMap);
                     break;
+                case 4:
+                    cout << "Select a neighborhood id:\n" << endl;
+                    int neighborhood;
+                    cin >> neighborhood;
+                    Display::perNeighborhoodTree(taxiTreeMap, uberTreeMap, neighborhood);
+                    break;
             }
 
         }
@@ -93,12 +100,18 @@ int main() {
                     break;
                 case 2 :
                     cout << "Select an hour of the day (on 24 hour clock) to compare trips:\n" << endl;
-                    long long hour;
+                    int hour;
                     cin >>  hour;
                     Display::timeDayHash(taxiHashMap, uberHashMap, hour);
                     break;
                 case 3:
                     Display::avgTripHash(taxiHashMap, uberHashMap);
+                    break;
+                case 4:
+                    cout << "Select a neighborhood id:\n" << endl;
+                    int neighborhood;
+                    cin >> neighborhood;
+                    Display::perNeighborhoodHash(taxiHashMap, uberHashMap, neighborhood);
                     break;
             }
         }
